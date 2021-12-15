@@ -3,3 +3,4 @@
 !.gitignore
 !.tmux.conf
 !.bashrc
+!.selected_editor

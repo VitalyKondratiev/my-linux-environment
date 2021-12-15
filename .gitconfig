@@ -1,0 +1,10 @@
+[user]
+        email = kondratiev.vitaliy2012@yandex.ru
+        name = Vitaliy Kondratiev
+[includeIf "gitdir:~/projects/"]
+	 path = ~/projects/.gitconfig
+[core]
+	autocrlf = input
+	editor = mcedit
+[merge]
+	tool = kdiff3

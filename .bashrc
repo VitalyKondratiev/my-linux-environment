@@ -134,7 +134,7 @@ fi
 export PS1="\e[34m\]\u@\h\e[m\] \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch 2> /dev/null)\[\e[00m\]\e[32m\]$\e[m\] "
 
 # this loads zsh, if zsh installed
-if [ -z "${NOZSH}" ] && [ $TERM = "xterm" -o $TERM = "xterm-256color" -o $TERM = "screen" ] && [ -x "$(command -v git)" ]; then
+if [ -z "${NOZSH}" ] && [ $TERM = "xterm" -o $TERM = "xterm-256color" -o $TERM = "screen" ] && [ -x "$(command -v zsh)" ]; then
     export SHELL=$(which zsh)
     if [[ -o login ]]
     then

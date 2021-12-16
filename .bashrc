@@ -116,17 +116,30 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# this loads nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 if [ -x "$(command -v tmux)" ]; then
     [ -s "$HOME/.bash_completion_tmux" ] && source ~/.bash_completion_tmux
     [[ $TERM != "screen" ]] && exec tmux
 fi
 
+# try show git branch name on prompt in repo, if git is installed
 if [ -x "$(command -v git)" ]; then
     parse_git_branch() {
 	[[ $(git rev-parse --show-toplevel 2> /dev/null) != $HOME ]] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
     }
 fi
-export PS1="\e[36m\]\u\e[m\]@\e[34m\]\h\e[m\] \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch 2> /dev/null)\[\e[00m\n\e[32m\]$\e[m\] "
+export PS1="\e[34m\]\u@\h\e[m\] \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch 2> /dev/null)\[\e[00m\]\e[32m\]$\e[m\] "
+
+# this loads zsh, if zsh installed
+if [ -z "${NOZSH}" ] && [ $TERM = "xterm" -o $TERM = "xterm-256color" -o $TERM = "screen" ] && [ -x "$(command -v git)" ]; then
+    export SHELL=$(which zsh)
+    if [[ -o login ]]
+    then
+        exec zsh -l
+    else
+        exec zsh
+    fi
+fi

@@ -32,3 +32,5 @@ if [ -d "/usr/local/go/bin" ] ; then
 fi
 
 [ -x "$(command -v zsh)" ] && exec $(which zsh)
+
+export PATH=$PATH:"$HOME/bin"

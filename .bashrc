@@ -132,3 +132,5 @@ if [ -x "$(command -v git)" ]; then
     }
 fi
 export PS1="\e[34m\]\u@\h\e[m\] \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch 2> /dev/null)\[\e[00m\]\e[32m\]$\e[m\] "
+
+[ -x "$(command -v zsh)" ] && [[ $SHLVL = 1 ]] && exec $(which zsh)
